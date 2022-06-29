@@ -1,0 +1,38 @@
+:root {
+    --blue-lt: #26c1ff;
+    --blue-med: #00b3fa;
+    --blue-dark: #007cad;
+    --orange: #fa8400;
+    --burnt: #ad5b00;
+}
+
+.body {
+    font-family: "Noto Sans", sans-serif;
+}
+
+/* Navbar  */
+
+.navbar {
+    background-image: linear-gradient(
+        to bottom,
+        var(--blue-med),
+        rgba(0, 0, 0, 0) 100%
+    );
+    padding: 0 8vw;
+}
+
+.navbar-brand {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+}
+
+.nav-item {
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    color: black !important;
+    margin: 0 5px;
+    font-weight: 500;
+}
