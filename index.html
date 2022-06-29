@@ -61,7 +61,7 @@
 
         <!-- Alert  -->
         <div
-            class="alert alert-warning alert-dismissible fade show hidden"
+            class="alert alert-danger alert-dismissible fade show hidden"
             role="alert"
             id="alert"
         >
@@ -265,7 +265,9 @@
                     >
                 </div>
             </div>
-            <p class="input-label hidden" id="string-result-div">result:</p>
+            <p class="input-label hidden" id="string-result-div">
+                result: <i class="fa-solid fa-download export-button"></i>
+            </p>
             <pre class="result" id="string-result"></pre>
             <button class="btn generate-btn" onclick="stringGenerate()">
                 Generate

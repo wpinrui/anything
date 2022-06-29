@@ -5,6 +5,7 @@ const alertContent = document.querySelector("#alert-content");
 function setAlert(text) {
     alertContent.textContent = text;
     show(alert);
+    setTimeout(() => unsetAlert(), 5000);
 }
 
 function unsetAlert() {
@@ -223,6 +224,8 @@ function initNumber() {
     if (!storedMin) {
         numberMinInput.value = 1;
         numberMaxInput.value = 100;
+        localStorage.setItem("numberMinInput", "1");
+        localStorage.setItem("numberMaxInput", "100");
     } else {
         const storedMax = localStorage.getItem("numberMaxInput");
         numberMinInput.value = storedMin;
@@ -235,10 +238,31 @@ function initString() {
     if (!storedCount) {
         stringCountInput.value = 1;
         stringLengthInput.value = 10;
+        stringCheckDigits.checked = true;
+        stringCheckLowercase.checked = true;
+        stringCheckUppercase.checked = true;
+        localStorage.setItem("stringCountInput", "1");
+        localStorage.setItem("stringLengthInput", "10");
+        localStorage.setItem("stringCheckDigits", "true");
+        localStorage.setItem("stringCheckLowercase", "true");
+        localStorage.setItem("stringCheckUppercase", "true");
     } else {
         const storedLength = localStorage.getItem("stringLengthInput");
+        const storedCheckDigits =
+            localStorage.getItem("stringCheckDigits") === "true" ? true : false;
+        const storedCheckLowercase =
+            localStorage.getItem("stringCheckLowercase") === "true"
+                ? true
+                : false;
+        const storedCheckUppercase =
+            localStorage.getItem("stringCheckUppercase") === "true"
+                ? true
+                : false;
         stringCountInput.value = storedCount;
         stringLengthInput.value = storedLength;
+        stringCheckDigits.checked = storedCheckDigits;
+        stringCheckLowercase.checked = storedCheckLowercase;
+        stringCheckUppercase.checked = storedCheckUppercase;
     }
 }
 

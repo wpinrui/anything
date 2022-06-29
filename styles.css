@@ -140,7 +140,8 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-left: 10px;
 }
 
-.copy-to-clipboard:hover {
+.copy-to-clipboard:hover,
+.export-button:hover {
     color: skyblue;
 }
 
@@ -177,4 +178,8 @@ input[type="number"]::-webkit-outer-spin-button {
 #string-result {
     font-size: 1.2rem;
     max-height: 50vh;
+}
+
+.export-button {
+    cursor: pointer;
 }
