@@ -1,2 +1,2 @@
-# random.ly
+# random.any
 Generate random things, with parameters saved for your convenience. 
