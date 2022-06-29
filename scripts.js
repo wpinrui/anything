@@ -2,10 +2,10 @@
 const alert = document.querySelector("#alert");
 const alertContent = document.querySelector("#alert-content");
 
-function setAlert(text) {
+function setAlert(text, timeout = 5000) {
     alertContent.textContent = text;
     show(alert);
-    setTimeout(() => unsetAlert(), 5000);
+    setTimeout(() => unsetAlert(), timeout);
 }
 
 function unsetAlert() {
@@ -215,14 +215,101 @@ function stringExport() {
     var pom = document.createElement("a");
     pom.setAttribute(
         "href",
-        "data:text/plain;charset=utf-8," +
-            encodeURIComponent(stringResult.textContent)
+        "data:text/plain;charset=utf-8," + stringResult.textContent
     );
     pom.setAttribute("download", "strings.txt");
     pom.click();
 }
 
 // Dice
+const diceCountInput = document.querySelector("#dice-count-input");
+const diceResultDiv = document.querySelector("#dice-result-div");
+const diceResult = document.querySelector("#dice-result");
+let savedDiceResults = "";
+
+diceCountInput.addEventListener("change", () => {
+    localStorage.setItem("diceCountInput", diceCountInput.value);
+});
+
+function diceIncrementCount() {
+    if (diceCountInput.value === "" || diceCountInput.value < 1) {
+        diceCountInput.value = 1;
+        localStorage.setItem("diceCountInput", diceCountInput.value);
+        return;
+    }
+    diceCountInput.value = Number(diceCountInput.value) + 1;
+    localStorage.setItem("diceCountInput", diceCountInput.value);
+}
+
+function diceDecrementCount() {
+    if (diceCountInput.value === "" || diceCountInput.value < 1) {
+        diceCountInput.value = 1;
+        localStorage.setItem("diceCountInput", diceCountInput.value);
+        return;
+    }
+    if (diceCountInput.value <= 1) {
+        return;
+    }
+    diceCountInput.value = Number(diceCountInput.value) - 1;
+    localStorage.setItem("diceCountInput", diceCountInput.value);
+}
+
+function chooseClass(number) {
+    return number === 1
+        ? "fa-dice-one"
+        : number === 2
+        ? "fa-dice-two"
+        : number === 3
+        ? "fa-dice-three"
+        : number === 4
+        ? "fa-dice-four"
+        : number === 5
+        ? "fa-dice-five"
+        : "fa-dice-six";
+}
+
+function diceRoll() {
+    show(diceResultDiv);
+    diceResult.innerHTML = "";
+    savedDiceResults = "";
+    if (diceCountInput.value < 1) {
+        setAlert("Error: You must roll at least one dice.");
+        return;
+    }
+    for (let i = 0; i < diceCountInput.value; i++) {
+        const result = generateRandomNumber(1, 6);
+        savedDiceResults += `${result}\n`;
+        if (i < 600) {
+            // Don't draw too many die
+            elem = document.createElement("div");
+            elem.classList.add("col-lg-2");
+            elem.classList.add("col-md-3");
+            elem.classList.add("col-4");
+            dice = document.createElement("i");
+            dice.classList.add("fa-solid");
+            dice.classList.add("fa-3x");
+            dice.classList.add("dice-image");
+            dice.classList.add(chooseClass(result));
+            elem.appendChild(dice);
+            diceResult.appendChild(elem);
+        } else {
+            setAlert(
+                "Only the first 600 die are shown. You can view the rest in .txt format by downloading the output.",
+                7000
+            );
+        }
+    }
+}
+
+function diceExport() {
+    var pom = document.createElement("a");
+    pom.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," + savedDiceResults
+    );
+    pom.setAttribute("download", "dice.txt");
+    pom.click();
+}
 
 // Main
 
@@ -235,6 +322,7 @@ const Sections = Object.freeze({
 function initSections() {
     initNumber();
     initString();
+    initDice();
     // TODO: init other sections
 }
 
@@ -282,6 +370,16 @@ function initString() {
         stringCheckDigits.checked = storedCheckDigits;
         stringCheckLowercase.checked = storedCheckLowercase;
         stringCheckUppercase.checked = storedCheckUppercase;
+    }
+}
+
+function initDice() {
+    const storedCount = localStorage.getItem("diceCountInput");
+    if (!storedCount) {
+        diceCountInput.value = 1;
+        localStorage.setItem("diceCountInput", "1");
+    } else {
+        diceCountInput.value = storedCount;
     }
 }
 

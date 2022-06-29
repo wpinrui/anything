@@ -30,10 +30,14 @@ section {
 
 #navbar {
     padding: 0;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 2;
 }
 
 .navbar {
-    background-color: rgba(0, 179, 250, 0.7);
+    background-color: rgba(0, 179, 250, 0.8);
     padding: 0 8vw;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
         rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -52,6 +56,10 @@ section {
     color: black !important;
     margin: 0 5px;
     font-weight: 500;
+}
+
+#navbar-space {
+    height: 70px;
 }
 
 .title {
@@ -183,9 +191,16 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #string-result {
     font-size: 1.2rem;
-    max-height: 50vh;
 }
 
 .export-button {
     cursor: pointer;
+}
+
+#dice-result {
+    font-size: 1.2rem;
+}
+
+.dice-image {
+    margin: 10px 0;
 }
