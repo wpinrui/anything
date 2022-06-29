@@ -31,8 +31,10 @@ section {
 }
 
 .navbar {
-    background-color: var(--blue-med);
+    background-color: rgba(0, 179, 250, 0.7);
     padding: 0 8vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .navbar-brand {
@@ -51,41 +53,41 @@ section {
 
 /* Number  */
 
-.title {
+#number .title {
     margin-top: 20px;
     font-size: 2.5rem;
     font-weight: 500;
     color: white;
 }
 
-.subtitle {
+#number .subtitle {
     font-size: 1.5rem;
     font-weight: 500;
     color: white;
 }
 
-input[type="number"] {
+#number input[type="number"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
     appearance: textfield;
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+#number input[type="number"]::-webkit-inner-spin-button,
+#number input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-.number-group {
+#number .number-group {
     margin: 25px 0;
 }
 
-.number-button-div {
+#number .number-button-div {
     height: 64px;
     width: 64px;
     text-align: center;
     align-items: center;
 }
 
-.number-input {
+#number .number-input {
     height: 64px;
     width: 128px;
     text-align: center;
@@ -94,47 +96,63 @@ input[type="number"]::-webkit-outer-spin-button {
     font-family: "Noto Sans", sans-serif;
 }
 
-.number-button {
+#number .number-button {
     line-height: 64px;
     color: white;
 }
 
-.minus-div {
+#number .minus-div {
     background-image: linear-gradient(to top, #a92929, #ac6464);
 }
 
-.plus-div {
+#number .plus-div {
     background-image: linear-gradient(to top, #2fc62a, #67ac64);
 }
 
-.number-input-label {
+#number .number-input-label {
     color: white;
     font-size: 2rem;
     font-weight: 500;
     margin: 10px 0;
 }
 
-.generate-btn {
+#number .generate-btn {
     background-image: linear-gradient(var(--orange), #ff6600);
     border: 2px solid var(--burnt);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
     margin: 25px 0;
 }
 
-.generate-btn:hover {
+#number .generate-btn:hover {
     background-image: linear-gradient(to top, var(--orange), #ff6600);
 }
 
-.copy-to-clipboard {
+#number .copy-to-clipboard {
     cursor: pointer;
     margin-left: 10px;
 }
 
-.copy-to-clipboard:hover {
+#number .copy-to-clipboard:hover {
     color: skyblue;
 }
 
-#number-result {
+#number #number-result {
     font-family: "Noto Sans", sans-serif;
+}
+
+.popover-body {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-family: "Noto Sans", sans-serif;
+    border: 2px solid white;
+}
+
+.popover-arrow {
+    display: none;
+}
+
+.popover .popover-arrow::after,
+.popover .popover-arrow::before {
+    display: none;
 }
