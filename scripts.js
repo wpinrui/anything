@@ -13,6 +13,15 @@ function unsetAlert() {
 }
 
 // Navigation
+
+const navLinks = document.querySelectorAll(".nav-item");
+const menuToggle = document.getElementById("anything-navbar");
+const bsCollapse = new bootstrap.Collapse(menuToggle);
+navLinks.forEach((l) => {
+    l.addEventListener("click", () => {
+        bsCollapse.toggle();
+    });
+});
 function navigateNumber() {
     showSection(Sections.number);
 }
