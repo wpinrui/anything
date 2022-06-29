@@ -1,9 +1,23 @@
-const popoverTrigger = document.querySelector('[data-bs-toggle="popover"]');
-const popover = new bootstrap.Popover(popoverTrigger);
+// Alert
+const alert = document.querySelector("#alert");
+const alertContent = document.querySelector("#alert-content");
+
+function setAlert(text) {
+    alertContent.textContent = text;
+    show(alert);
+}
+
+function unsetAlert() {
+    hide(alert);
+}
 
 // Navigation
 function navigateNumber() {
     showSection(Sections.number);
+}
+
+function navigateString() {
+    showSection(Sections.string);
 }
 
 // Number
@@ -11,7 +25,11 @@ function navigateNumber() {
 const numberMinInput = document.querySelector("#min-input");
 const numberMaxInput = document.querySelector("#max-input");
 const numberResult = document.querySelector("#number-result");
-const numberResultDiv = document.querySelector("#result-div");
+const numberResultDiv = document.querySelector("#number-result-div");
+const numberPopoverTrigger = document.querySelector(
+    "#number-copy-to-clipboard"
+);
+const numberPopover = new bootstrap.Popover(numberPopoverTrigger);
 
 numberMinInput.addEventListener("change", () => {
     localStorage.setItem("numberMinInput", numberMinInput.value);
@@ -45,6 +63,10 @@ function numberDecrementMax() {
 }
 
 function numberGenerate() {
+    if (numberMaxInput.value < numberMinInput.value) {
+        setAlert("Error: Maximum number is less than minimum number.");
+        return;
+    }
     show(numberResultDiv);
     numberResult.textContent = generateRandomNumber(
         Number(numberMinInput.value),
@@ -54,17 +76,145 @@ function numberGenerate() {
 
 function numberCopyToClipboard() {
     navigator.clipboard.writeText(numberResult.textContent);
-    setTimeout(() => popover.hide(), 2000);
+    setTimeout(() => numberPopover.hide(), 2000);
+}
+
+// String
+const stringCountInput = document.querySelector("#string-count-input");
+const stringLengthInput = document.querySelector("#string-len-input");
+const stringCheckDigits = document.querySelector("#string-check-digits");
+const stringCheckLowercase = document.querySelector("#string-check-lowercase");
+const stringCheckUppercase = document.querySelector("#string-check-uppercase");
+const stringResultDiv = document.querySelector("#string-result-div");
+const stringResult = document.querySelector("#string-result");
+
+stringCountInput.addEventListener("change", () => {
+    localStorage.setItem("stringCountInput", stringCountInput.value);
+});
+
+stringLengthInput.addEventListener("change", () => {
+    localStorage.setItem("stringLengthInput", stringLengthInput.value);
+});
+
+stringCheckDigits.addEventListener("change", () => {
+    localStorage.setItem(
+        "stringCheckDigits",
+        stringCheckDigits.checked ? "true" : "false"
+    );
+});
+
+stringCheckLowercase.addEventListener("change", () => {
+    localStorage.setItem(
+        "stringCheckLowercase",
+        stringCheckLowercase.checked ? "true" : "false"
+    );
+});
+
+stringCheckUppercase.addEventListener("change", () => {
+    localStorage.setItem(
+        "stringCheckUppercase",
+        stringCheckUppercase.checked ? "true" : "false"
+    );
+});
+
+const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const digitChars = "0123456789";
+
+function generateRandomStrings(chars) {
+    let result = "";
+    for (let strings = 0; strings < stringCountInput.value; strings++) {
+        for (let i = 0; i < stringLengthInput.value; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        result += "\n";
+    }
+    return result;
+}
+
+function stringIncrementCount() {
+    if (stringCountInput.value === "" || stringCountInput.value < 1) {
+        stringCountInput.value = 1;
+        localStorage.setItem("stringCountInput", stringCountInput.value);
+        return;
+    }
+    stringCountInput.value = Number(stringCountInput.value) + 1;
+    localStorage.setItem("stringCountInput", stringCountInput.value);
+}
+
+function stringDecrementCount() {
+    if (stringCountInput.value === "" || stringCountInput.value < 1) {
+        stringCountInput.value = 1;
+        localStorage.setItem("stringCountInput", stringCountInput.value);
+        return;
+    }
+    if (Number(stringCountInput.value) <= 1) {
+        return;
+    }
+    stringCountInput.value = Number(stringCountInput.value) - 1;
+    localStorage.setItem("stringCountInput", stringCountInput.value);
+}
+
+function stringIncrementLength() {
+    if (stringLengthInput.value === "" || stringLengthInput.value < 1) {
+        stringLengthInput.value = 1;
+        localStorage.setItem("stringCountInput", stringLengthInput.value);
+        return;
+    }
+    stringLengthInput.value = Number(stringLengthInput.value) + 1;
+    localStorage.setItem("stringLengthInput", stringLengthInput.value);
+}
+
+function stringDecrementLength() {
+    if (stringLengthInput.value === "" || stringLengthInput.value < 1) {
+        stringLengthInput.value = 1;
+        localStorage.setItem("stringCountInput", stringLengthInput.value);
+        return;
+    }
+    if (Number(stringLengthInput.value) <= 1) {
+        return;
+    }
+    stringLengthInput.value = Number(stringLengthInput.value) - 1;
+    localStorage.setItem("stringLengthInput", stringLengthInput.value);
+}
+
+function stringGenerate() {
+    let chars = "";
+    if (stringCheckDigits.checked) {
+        chars += digitChars;
+    }
+    if (stringCheckLowercase.checked) {
+        chars += lowercaseChars;
+    }
+    if (stringCheckUppercase.checked) {
+        chars += uppercaseChars;
+    }
+    if (chars.length === 0) {
+        setAlert(
+            "Error: No characters (digits, lowercase or uppercase) selected."
+        );
+        return;
+    }
+    if (!stringCountInput.value || Number(stringCountInput.value) < 1) {
+        stringIncrementCount();
+    }
+    if (!stringLengthInput || Number(stringLengthInput.value) < 1) {
+        stringIncrementLength();
+    }
+    show(stringResultDiv);
+    stringResult.textContent = generateRandomStrings(chars);
 }
 
 // Main
 
 const Sections = Object.freeze({
     number: { element: document.querySelector("#number"), name: "number" },
+    string: { element: document.querySelector("#string"), name: "string" },
 });
 
 function initSections() {
     initNumber();
+    initString();
     // TODO: init other sections
 }
 
@@ -77,6 +227,18 @@ function initNumber() {
         const storedMax = localStorage.getItem("numberMaxInput");
         numberMinInput.value = storedMin;
         numberMaxInput.value = storedMax;
+    }
+}
+
+function initString() {
+    const storedCount = localStorage.getItem("stringCountInput");
+    if (!storedCount) {
+        stringCountInput.value = 1;
+        stringLengthInput.value = 10;
+    } else {
+        const storedLength = localStorage.getItem("stringLengthInput");
+        stringCountInput.value = storedCount;
+        stringLengthInput.value = storedLength;
     }
 }
 

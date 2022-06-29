@@ -9,10 +9,12 @@
 html,
 body {
     font-family: "Playfair Display", serif;
+    color: white;
     /* background-image: linear-gradient(rgb(10, 10, 10), rgb(90, 90, 90)); */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url(images/nicole-mason-cv_fqvrbKWs-unsplash.jpg);
     background-size: cover;
+    background-attachment: fixed;
     height: 100%;
 }
 
@@ -41,6 +43,7 @@ section {
     font-weight: 600;
     font-size: 2.5rem;
     letter-spacing: 0.1rem;
+    cursor: default;
 }
 
 .nav-item {
@@ -51,72 +54,76 @@ section {
     font-weight: 500;
 }
 
-/* Number  */
-
-#number .title {
+.title {
     margin-top: 20px;
     font-size: 2.5rem;
     font-weight: 500;
-    color: white;
 }
 
-#number .subtitle {
+.subtitle {
     font-size: 1.5rem;
     font-weight: 500;
-    color: white;
 }
 
-#number input[type="number"] {
+/* Alert  */
+.alert {
+    margin: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Number  */
+
+input[type="number"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
     appearance: textfield;
 }
-#number input[type="number"]::-webkit-inner-spin-button,
-#number input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-#number .number-group {
-    margin: 25px 0;
+.group {
+    margin: 15px 0;
 }
 
-#number .number-button-div {
-    height: 64px;
-    width: 64px;
+.button-div {
+    height: 40px;
+    width: 40px;
     text-align: center;
     align-items: center;
+    cursor: pointer;
 }
 
-#number .number-input {
-    height: 64px;
-    width: 128px;
+.number-input {
+    height: 40px;
+    width: 80px;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     font-family: "Noto Sans", sans-serif;
 }
 
-#number .number-button {
-    line-height: 64px;
-    color: white;
+.number-button {
+    line-height: 40px;
 }
 
-#number .minus-div {
+.minus-div {
     background-image: linear-gradient(to top, #a92929, #ac6464);
 }
 
-#number .plus-div {
+.plus-div {
     background-image: linear-gradient(to top, #2fc62a, #67ac64);
 }
 
-#number .number-input-label {
-    color: white;
+.input-label {
     font-size: 2rem;
     font-weight: 500;
     margin: 10px 0;
 }
 
-#number .generate-btn {
+.generate-btn {
     background-image: linear-gradient(var(--orange), #ff6600);
     border: 2px solid var(--burnt);
     font-size: 1.4rem;
@@ -124,20 +131,20 @@ section {
     margin: 25px 0;
 }
 
-#number .generate-btn:hover {
+.generate-btn:hover {
     background-image: linear-gradient(to top, var(--orange), #ff6600);
 }
 
-#number .copy-to-clipboard {
+.copy-to-clipboard {
     cursor: pointer;
     margin-left: 10px;
 }
 
-#number .copy-to-clipboard:hover {
+.copy-to-clipboard:hover {
     color: skyblue;
 }
 
-#number #number-result {
+.result {
     font-family: "Noto Sans", sans-serif;
 }
 
@@ -155,4 +162,19 @@ section {
 .popover .popover-arrow::after,
 .popover .popover-arrow::before {
     display: none;
+}
+
+/* Strings  */
+#string .input-label {
+    font-size: 1.5rem;
+}
+
+.form-check-label {
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+#string-result {
+    font-size: 1.2rem;
+    max-height: 50vh;
 }

@@ -6,9 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>anything: Generate everything</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Playfair+Display:wght@500&display=swap"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin=""
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Playfair+Display:wght@500&amp;display=swap"
             rel="stylesheet"
         />
         <script
@@ -27,18 +31,7 @@
         <!-- Navbar -->
         <section id="navbar">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="#">anything</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="navbar-brand">anything</a>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ms-auto">
                         <a class="nav-item nav-link" onclick="navigateNumber()"
@@ -66,6 +59,21 @@
             </nav>
         </section>
 
+        <!-- Alert  -->
+        <div
+            class="alert alert-warning alert-dismissible fade show hidden"
+            role="alert"
+            id="alert"
+        >
+            <span id="alert-content">Testing</span>
+            <button
+                type="button"
+                class="btn-close"
+                aria-label="Close"
+                onclick="unsetAlert()"
+            ></button>
+        </div>
+
         <!-- Number  -->
         <section id="number" class="">
             <p class="title">Number</p>
@@ -73,18 +81,16 @@
                 Generate random numbers in a specified range.
             </p>
             <div class="row">
-                <div class="number-group col-lg-4 col-md-6">
-                    <label for="min-input" class="number-input-label"
-                        >min</label
-                    >
+                <div class="group col-lg-4 col-md-6">
+                    <label for="min-input" class="input-label">min</label>
                     <div class="row m-0">
                         <div
-                            class="number-button-div minus-div"
+                            class="button-div minus-div"
                             onclick="numberDecrementMin()"
                         >
                             <i
                                 id="min-down"
-                                class="fa-solid fa-minus fa-3x number-button"
+                                class="fa-solid fa-minus number-button"
                             ></i>
                         </div>
                         <input
@@ -94,29 +100,26 @@
                             step="1"
                         />
                         <div
-                            class="number-button-div plus-div"
+                            class="button-div plus-div"
                             onclick="numberIncrementMin()"
                         >
                             <i
                                 id="min-up"
-                                class="fa-solid fa-plus fa-3x number-button"
+                                class="fa-solid fa-plus number-button"
                             ></i>
                         </div>
                     </div>
                 </div>
-
-                <div class="number-group col-lg-4 col-md-6">
-                    <label for="max-input" class="number-input-label"
-                        >max</label
-                    >
+                <div class="group col-lg-4 col-md-6">
+                    <label for="max-input" class="input-label">max</label>
                     <div class="row m-0">
                         <div
-                            class="number-button-div minus-div"
+                            class="button-div minus-div"
                             onclick="numberDecrementMax()"
                         >
                             <i
                                 id="max-down"
-                                class="fa-solid fa-minus fa-3x number-button"
+                                class="fa-solid fa-minus number-button"
                             ></i>
                         </div>
                         <input
@@ -126,34 +129,148 @@
                             step="1"
                         />
                         <div
-                            class="number-button-div plus-div"
+                            class="button-div plus-div"
                             onclick="numberIncrementMax()"
                         >
                             <i
                                 id="max-up"
-                                class="fa-solid fa-plus fa-3x number-button"
+                                class="fa-solid fa-plus number-button"
                             ></i>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <p class="number-input-label hidden" id="result-div">
-                result:
-                <span id="number-result">100</span
+            <p class="input-label hidden" id="number-result-div">
+                result: <span id="number-result" class="result">100</span
                 ><i
+                    id="number-copy-to-clipboard"
                     class="fa-solid fa-clone copy-to-clipboard"
                     data-bs-toggle="popover"
                     data-bs-content="Result copied to clipboard."
                     onclick="numberCopyToClipboard()"
                 ></i>
             </p>
-
             <button class="btn generate-btn" onclick="numberGenerate()">
                 Generate
             </button>
         </section>
-
+        <!-- String  -->
+        <section id="string">
+            <p class="title">String</p>
+            <p class="subtitle">
+                Generate random strings based on your specified parameters.
+            </p>
+            <div class="row">
+                <div class="group col-lg-4 col-md-6">
+                    <label for="string-count-input" class="input-label"
+                        >Number of strings</label
+                    >
+                    <div class="row m-0">
+                        <div
+                            class="button-div minus-div"
+                            onclick="stringDecrementCount()"
+                        >
+                            <i
+                                id="string-count-down"
+                                class="fa-solid fa-minus number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="string-count-input"
+                            class="number-input col-md-5"
+                            type="number"
+                            step="1"
+                        />
+                        <div
+                            class="button-div plus-div"
+                            onclick="stringIncrementCount()"
+                        >
+                            <i
+                                id="string-count-up"
+                                class="fa-solid fa-plus number-button"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="group col-lg-4 col-md-6">
+                    <label for="string-len-input" class="input-label"
+                        >Length of each string</label
+                    >
+                    <div class="row m-0">
+                        <div
+                            class="button-div minus-div"
+                            onclick="stringDecrementLength()"
+                        >
+                            <i
+                                id="string-len-down"
+                                class="fa-solid fa-minus number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="string-len-input"
+                            class="number-input"
+                            type="number"
+                            step="1"
+                        />
+                        <div
+                            class="button-div plus-div"
+                            onclick="stringIncrementLength()"
+                        >
+                            <i
+                                id="string-len-up"
+                                class="fa-solid fa-plus number-button"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0">
+                <div
+                    class="col-lg-4 col-md-6 group form-check d-flex align-items-center"
+                >
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="string-check-digits"
+                    />
+                    <label class="form-check-label" for="string-check-digits"
+                        >Include digits 0-9</label
+                    >
+                </div>
+                <div
+                    class="col-lg-4 col-md-6 group form-check d-flex align-items-center"
+                >
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="string-check-lowercase"
+                    />
+                    <label class="form-check-label" for="string-check-lowercase"
+                        >Include lowercase a-z</label
+                    >
+                </div>
+                <div
+                    class="col-lg-4 col-md-6 group form-check d-flex align-items-center"
+                >
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="string-check-uppercase"
+                    />
+                    <label class="form-check-label" for="string-check-uppercase"
+                        >Include uppercase A-Z</label
+                    >
+                </div>
+            </div>
+            <p class="input-label hidden" id="string-result-div">result:</p>
+            <pre class="result" id="string-result"></pre>
+            <button class="btn generate-btn" onclick="stringGenerate()">
+                Generate
+            </button>
+        </section>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
