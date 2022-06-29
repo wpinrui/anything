@@ -66,6 +66,76 @@
             </nav>
         </section>
 
+        <!-- Number  -->
+        <section id="number">
+            <p class="title">Number</p>
+            <p class="subtitle">
+                Generate random numbers in a specified range.
+            </p>
+            <div class="row">
+                <div class="number-group col-lg-6">
+                    <label for="min-input" class="number-input-label"
+                        >min</label
+                    >
+                    <div class="row m-0">
+                        <div class="number-button-div minus-div">
+                            <i
+                                id="min-down"
+                                class="fa-solid fa-minus fa-3x number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="min-input"
+                            class="number-input col-md-4"
+                            type="number"
+                            step="1"
+                        />
+                        <div class="number-button-div plus-div">
+                            <i
+                                id="min-up"
+                                class="fa-solid fa-plus fa-3x number-button"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="number-group col-lg-6">
+                    <label for="max-input" class="number-input-label"
+                        >max</label
+                    >
+                    <div class="row m-0">
+                        <div class="number-button-div minus-div">
+                            <i
+                                id="max-down"
+                                class="fa-solid fa-minus fa-3x number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="max-input"
+                            class="number-input"
+                            type="number"
+                            step="1"
+                        />
+                        <div class="number-button-div plus-div">
+                            <i
+                                id="max-up"
+                                class="fa-solid fa-plus fa-3x number-button"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="number-input-label">
+                result:
+                <span id="number-result"
+                    >100<i class="fa-solid fa-clone copy-to-clipboard"></i
+                ></span>
+            </p>
+
+            <button class="btn generate-btn">Generate</button>
+        </section>
+
         <script src="scripts.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

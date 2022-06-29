@@ -6,23 +6,35 @@
     --burnt: #ad5b00;
 }
 
-.body {
-    font-family: "Noto Sans", sans-serif;
+html,
+body {
+    font-family: "Playfair Display", serif;
+    /* background-image: linear-gradient(rgb(10, 10, 10), rgb(90, 90, 90)); */
+    /* background-size: cover; */
+    background-color: rgb(50, 50, 50);
+    height: 100%;
+}
+
+section {
+    padding: 0 8vw;
+}
+
+.hidden {
+    display: none;
 }
 
 /* Navbar  */
 
+#navbar {
+    padding: 0;
+}
+
 .navbar {
-    background-image: linear-gradient(
-        to bottom,
-        var(--blue-med),
-        rgba(0, 0, 0, 0) 100%
-    );
+    background-color: var(--blue-med);
     padding: 0 8vw;
 }
 
 .navbar-brand {
-    font-family: "Playfair Display", serif;
     font-weight: 600;
     font-size: 2.5rem;
     letter-spacing: 0.1rem;
@@ -30,9 +42,98 @@
 
 .nav-item {
     cursor: pointer;
-    font-family: "Playfair Display", serif;
     font-size: 1.3rem;
     color: black !important;
     margin: 0 5px;
     font-weight: 500;
+}
+
+/* Number  */
+
+.title {
+    margin-top: 20px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: white;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number-group {
+    margin: 25px 0;
+}
+
+.number-button-div {
+    height: 64px;
+    width: 64px;
+    text-align: center;
+    align-items: center;
+}
+
+.number-input {
+    height: 64px;
+    width: 128px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.number-button {
+    line-height: 64px;
+    color: white;
+}
+
+.minus-div {
+    background-image: linear-gradient(to top, #a92929, #ac6464);
+}
+
+.plus-div {
+    background-image: linear-gradient(to top, #2fc62a, #67ac64);
+}
+
+.number-input-label {
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.generate-btn {
+    background-image: linear-gradient(var(--orange), #ff6600);
+    border: 2px solid var(--burnt);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 25px 0;
+}
+
+.generate-btn:hover {
+    background-image: linear-gradient(to top, var(--orange), #ff6600);
+}
+
+.copy-to-clipboard {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.copy-to-clipboard:hover {
+    color: skyblue;
+}
+
+#number-result {
+    font-family: "Noto Sans", sans-serif;
 }
