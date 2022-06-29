@@ -21,6 +21,10 @@ function navigateString() {
     showSection(Sections.string);
 }
 
+function navigateDice() {
+    showSection(Sections.dice);
+}
+
 // Number
 
 const numberMinInput = document.querySelector("#min-input");
@@ -206,11 +210,26 @@ function stringGenerate() {
     stringResult.textContent = generateRandomStrings(chars);
 }
 
+function stringExport() {
+    // Source: https://stackoverflow.com/questions/22347756/how-to-export-a-string-to-a-file-in-html-phonegap
+    var pom = document.createElement("a");
+    pom.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," +
+            encodeURIComponent(stringResult.textContent)
+    );
+    pom.setAttribute("download", "strings.txt");
+    pom.click();
+}
+
+// Dice
+
 // Main
 
 const Sections = Object.freeze({
     number: { element: document.querySelector("#number"), name: "number" },
     string: { element: document.querySelector("#string"), name: "string" },
+    dice: { element: document.querySelector("#dice"), name: "dice" },
 });
 
 function initSections() {

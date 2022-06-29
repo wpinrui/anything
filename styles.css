@@ -110,10 +110,12 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .minus-div {
+    border: 1px solid maroon;
     background-image: linear-gradient(to top, #a92929, #ac6464);
 }
 
 .plus-div {
+    border: 1px solid green;
     background-image: linear-gradient(to top, #2fc62a, #67ac64);
 }
 
@@ -173,6 +175,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .form-check-label {
     font-size: 1.2rem;
     margin: 0 10px;
+}
+
+#string #string-result-div {
+    font-size: 2rem;
 }
 
 #string-result {

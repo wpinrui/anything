@@ -266,12 +266,56 @@
                 </div>
             </div>
             <p class="input-label hidden" id="string-result-div">
-                result: <i class="fa-solid fa-download export-button"></i>
+                result:
+                <i
+                    class="fa-solid fa-download export-button"
+                    onclick="stringExport()"
+                ></i>
             </p>
             <pre class="result" id="string-result"></pre>
             <button class="btn generate-btn" onclick="stringGenerate()">
                 Generate
             </button>
+        </section>
+
+        <!-- Dice  -->
+        <section id="dice">
+            <p class="title">Dice</p>
+            <p class="subtitle">
+                Roll the dice / roll many die, for games and stuff.
+            </p>
+            <div class="row">
+                <div class="group col-lg-4 col-md-6">
+                    <label for="string-count-input" class="input-label"
+                        >Number of die</label
+                    >
+                    <div class="row m-0">
+                        <div
+                            class="button-div minus-div"
+                            onclick="diceDecrementCount()"
+                        >
+                            <i
+                                id="dice-count-down"
+                                class="fa-solid fa-minus number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="dice-count-input"
+                            class="number-input col-md-5"
+                            type="number"
+                            step="1"
+                        />
+                        <div
+                            class="button-div plus-div"
+                            onclick="diceIncrementCount()"
+                        >
+                            <i
+                                id="dice-count-up"
+                                class="fa-solid fa-plus number-button"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
         </section>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
