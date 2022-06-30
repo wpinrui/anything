@@ -37,6 +37,10 @@ function navigateDice() {
     showSection(Sections.dice);
 }
 
+function navigateCoin() {
+    showSection(Sections.coin);
+}
+
 // Number
 
 const numberMinInput = document.querySelector("#min-input");
@@ -305,7 +309,7 @@ function diceRoll() {
             elem.appendChild(dice);
             diceResult.appendChild(elem);
         } else {
-            setAlert(
+            setAlcoinCountInputert(
                 "Only the first 600 die are shown. You can view the rest in .txt format by downloading the output.",
                 7000
             );
@@ -317,9 +321,98 @@ function diceExport() {
     var pom = document.createElement("a");
     pom.setAttribute(
         "href",
-        "data:text/plain;charset=utf-8," + savedDiceResults
+        "data:text/plain;charset=utf-8," + savedCoinResults
     );
     pom.setAttribute("download", "dice.txt");
+    pom.click();
+}
+
+// Coin
+const coinCountInput = document.querySelector("#coin-count-input");
+const coinResultDiv = document.querySelector("#coin-result-div");
+const coinResult = document.querySelector("#coin-result");
+let savedCoinResults = "";
+
+coinCountInput.addEventListener("change", () => {
+    localStorage.setItem("coinCountInput", coinCountInput.value);
+});
+
+function coinIncrementCount() {
+    if (coinCountInput.value === "" || coinCountInput.value < 1) {
+        coinCountInput.value = 1;
+        localStorage.setItem("coinCountInput", coinCountInput.value);
+        return;
+    }
+    coinCountInput.value = Number(coinCountInput.value) + 1;
+    localStorage.setItem("coinCountInput", coinCountInput.value);
+}
+
+function coinDecrementCount() {
+    if (coinCountInput.value === "" || coinCountInput.value < 1) {
+        coinCountInput.value = 1;
+        localStorage.setItem("coinCountInput", coinCountInput.value);
+        return;
+    }
+    if (coinCountInput.value <= 1) {
+        return;
+    }
+    coinCountInput.value = Number(coinCountInput.value) - 1;
+    localStorage.setItem("coinCountInput", coinCountInput.value);
+}
+
+function chooseCoin(number) {
+    return number === 0 ? "images/heads.png" : "images/tails.png";
+}
+
+function chooseCoinLabel(number) {
+    return number === 0 ? "heads" : "tails";
+}
+
+function coinFlip() {
+    show(coinResultDiv);
+    coinResult.innerHTML = "";
+    savedCoinResults = "";
+    if (coinCountInput.value < 1) {
+        setAlert("Error: You must flip at least one coin.");
+        return;
+    }
+    for (let i = 0; i < coinCountInput.value; i++) {
+        const result = generateRandomNumber(0, 1);
+        savedCoinResults += `${chooseCoinLabel(result)}\n`;
+        if (i < 600) {
+            // Don't draw too many coins
+            elem = document.createElement("div");
+            elem.classList.add("col-lg-2");
+            elem.classList.add("col-md-3");
+            elem.classList.add("col-4");
+            coinAndLabel = document.createElement("div");
+            coinAndLabel.classList.add("coin-and-label");
+            coin = document.createElement("img");
+            coin.classList.add("coin-image");
+            coin.setAttribute("src", chooseCoin(result));
+            label = document.createElement("p");
+            label.textContent = chooseCoinLabel(result);
+            label.classList.add("coin-label");
+            elem.appendChild(coinAndLabel);
+            coinAndLabel.appendChild(coin);
+            coinAndLabel.appendChild(label);
+            coinResult.appendChild(elem);
+        } else {
+            setAlert(
+                "Only the first 600 coins are shown. You can view the rest in .txt format by downloading the output.",
+                7000
+            );
+        }
+    }
+}
+
+function coinExport() {
+    var pom = document.createElement("a");
+    pom.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," + savedCoinResults
+    );
+    pom.setAttribute("download", "coins.txt");
     pom.click();
 }
 
@@ -329,12 +422,14 @@ const Sections = Object.freeze({
     number: { element: document.querySelector("#number"), name: "number" },
     string: { element: document.querySelector("#string"), name: "string" },
     dice: { element: document.querySelector("#dice"), name: "dice" },
+    coin: { element: document.querySelector("#coin"), name: "coin" },
 });
 
 function initSections() {
     initNumber();
     initString();
     initDice();
+    initCoin();
     // TODO: init other sections
 }
 
@@ -392,6 +487,16 @@ function initDice() {
         localStorage.setItem("diceCountInput", "1");
     } else {
         diceCountInput.value = storedCount;
+    }
+}
+
+function initCoin() {
+    const storedCount = localStorage.getItem("coinCountInput");
+    if (!storedCount) {
+        coinCountInput.value = 1;
+        localStorage.setItem("coinCountInput", "1");
+    } else {
+        coinCountInput.value = storedCount;
     }
 }
 

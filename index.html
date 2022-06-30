@@ -348,6 +348,64 @@
             <div class="row m-0" id="dice-result"></div>
         </section>
 
+        <!-- Coin  -->
+        <section id="coin">
+            <p class="title">Coin</p>
+            <p class="subtitle">
+                Flip a coin (or many coins) to make your decisions for you, like
+                what major to pick or perhaps who to marry.
+            </p>
+            <a
+                href="https://www.flaticon.com/free-icons/coin"
+                title="coin icons"
+                >Coin icons created by Freepik - Flaticon.</a
+            >
+            <div class="row">
+                <div class="group col-lg-4 col-md-6">
+                    <label for="string-count-input" class="input-label"
+                        >Number of coins</label
+                    >
+                    <div class="row m-0">
+                        <div
+                            class="button-div minus-div"
+                            onclick="coinDecrementCount()"
+                        >
+                            <i
+                                id="coin-count-down"
+                                class="fa-solid fa-minus number-button"
+                            ></i>
+                        </div>
+                        <input
+                            id="coin-count-input"
+                            class="number-input col-md-5"
+                            type="number"
+                            step="1"
+                        />
+                        <div
+                            class="button-div plus-div"
+                            onclick="coinIncrementCount()"
+                        >
+                            <i
+                                id="coin-count-up"
+                                class="fa-solid fa-plus number-button"
+                            ></i>
+                        </div>
+                    </div>
+                    <button class="btn generate-btn" onclick="coinFlip()">
+                        Flip Coin(s)
+                    </button>
+                </div>
+            </div>
+            <p class="input-label hidden" id="coin-result-div">
+                result:
+                <i
+                    class="fa-solid fa-download export-button"
+                    onclick="coinExport()"
+                ></i>
+            </p>
+            <div class="row m-0" id="coin-result"></div>
+        </section>
+
         <script src="scripts.js"></script>
     </body>
 </html>
