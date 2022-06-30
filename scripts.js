@@ -321,7 +321,7 @@ function diceExport() {
     var pom = document.createElement("a");
     pom.setAttribute(
         "href",
-        "data:text/plain;charset=utf-8," + savedCoinResults
+        "data:text/plain;charset=utf-8," + savedDiceResults
     );
     pom.setAttribute("download", "dice.txt");
     pom.click();
